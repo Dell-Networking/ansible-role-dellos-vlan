@@ -1,0 +1,22 @@
+# Copyright (c) 2016 Dell Inc.
+---
+galaxy_info:
+  author: Dell Networking Engineering 
+  description: The ansible-role-dellos-vlan facilitates the configuration of VLAN attributes in devices running Dell EMC Network Operating System OS6, OS9, and OS10.
+  company: Dell Inc 
+  license:  Apache 2.0
+  min_ansible_version: 2.2
+
+  platforms:
+  - name: Dell OS6
+  - name: Dell OS9
+  - name: Dell OS10
+
+  galaxy_tags:
+    - Networking
+    - DELL 
+    - EMC
+    - OS9
+    - OS6
+    - OS10
+    - FTOS
