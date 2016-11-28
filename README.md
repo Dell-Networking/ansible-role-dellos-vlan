@@ -118,6 +118,10 @@ Then run with:
 
     ansible-playbook -i hosts leaf.yml
 
+Contact
+--------
+Send general comments and feedback to: feedback-ansible-dell-networking@dell.com
+
 License
 --------
 
