@@ -27,9 +27,9 @@ Any role variable with a corresponding state variable set to absent negates the 
 For variables with no state variable, setting an empty value for the variable negates the corresponding configuration.
 The variables and its values are case-sensitive.
 
-The hostname (dictionary) holds a dictionary with the VLAN ID key. The VLAN ID can be in the range of 1-4094.
+The ``hostname`` (dictionary) holds a dictionary with the VLAN ID key. The VLAN ID can be in the range of 1-4094.
 
-VLAN ID holds the following key values:
+``VLAN ID`` holds the following key values:
 
 |       Key | Type                      | Notes                                                                                                                                                                                     |
 |------------|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -108,9 +108,9 @@ Sample ``vars/main.yaml``:
           state: present
 
 
-Simple playbook to setup system, ``leaf.yml``:
+Simple playbook to setup system, ``leaf.yaml``:
 
-    - hosts: leafs
+    - hosts: leaf1
       roles:
          - Dell-Networking.dellos-vlan
                 
@@ -125,7 +125,7 @@ Send general comments and feedback to: feedback-ansible-dell-networking@dell.com
 License
 --------
 
-Copyright (c) 2016, Dell Inc. All rights reserved.
+Copyright (c) 2017, Dell Inc. All rights reserved.
  
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
