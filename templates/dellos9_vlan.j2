@@ -21,6 +21,7 @@ dellos_vlan:
       members_state: present
 ########################################
 #}
+{% if (dellos_vlan is defined and dellos_vlan) and (hostname in dellos_vlan) %}
 {% set vars = dellos_vlan[hostname] %}
 {% for key  in vars.keys() %}
   {% set vlan_id = key.split(" ") %}
@@ -59,4 +60,4 @@ interface Vlan {{ vlan_id[1] }}
 
   {% endif %}
 {% endfor %}
-
+{% endif %}
