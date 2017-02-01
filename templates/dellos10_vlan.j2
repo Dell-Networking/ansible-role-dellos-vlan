@@ -21,6 +21,7 @@ dellos_vlan:
 
 ########################################
 #}
+{% if (dellos_vlan is defined and dellos_vlan) and (hostname in dellos_vlan) %}
 {% set vars = dellos_vlan[hostname] %}
 {% for key  in vars.keys() %}
   {% set vlan_id = key.split(" ") %}
@@ -57,4 +58,4 @@ interface {{ port }}
 
   {% endif %}
 {% endfor %}
-
+{% endif %}
