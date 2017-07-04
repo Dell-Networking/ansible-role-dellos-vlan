@@ -1,5 +1,0 @@
----
-- hosts: datacenter
-  connection: local
-  roles:
-    - dellos-vlan

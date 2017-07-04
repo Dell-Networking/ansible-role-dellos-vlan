@@ -1,7 +1,7 @@
 VLAN Role for Dell EMC Networking OS
 ====================================
 This role facilitates configuring virtual LAN (VLAN) attributes. It supports the creation and deletion of a VLAN and its member ports.
-This role is abstracted for OS6, OS9, and OS10.  
+This role is abstracted for dellos9, dellos6 and dellos10 devices. 
 
 Installation
 ------------
@@ -19,25 +19,31 @@ dictionary.
 Role Variables
 --------------
 
-``dellos_vlan`` (dictionary) contains the hostname (dictionary).
-The hostname is the value of the variable ``hostname`` that corresponds to the name of the OS device.
-This role is abstracted using the variable ``ansible_net_os_name`` that can take the following values: dellos6, dellos9 and dellos10.
+This role is abstracted using the variable ``ansible_net_os_name`` that can take the following values: dellos9, dellos10, dellos6.
 
 Any role variable with a corresponding state variable set to absent negates the configuration of that variable. 
 For variables with no state variable, setting an empty value for the variable negates the corresponding configuration.
 The variables and its values are case-sensitive.
 
-The ``hostname`` (dictionary) holds a dictionary with the VLAN ID key. The VLAN ID can be in the range of 1-4094.
+``dellos_vlan`` (dictionary) holds following key with the VLAN ID key. The VLAN ID key should be in format `vlan < ID >`. The ID can be in the range of 1-4094.
+
+|       key | Type                      | Notes                                                                                                                                                                                     |
+|-----------|----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| default_vlan | boolean                 | Configures defualt vlan as diabled if set to true. This key is not supported on dellos6 and dellos10 devices.                 |
 
 ``VLAN ID`` holds the following key values:
 
 |       Key | Type                      | Notes                                                                                                                                                                                     |
 |------------|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| name             | string                        |Configures name of the VLAN. This key is not supported for OS10 devices.                   | 
-| tagged_members   | string          |Specifies the list of port members to be tagged to the corresponding VLAN. | 
-| untagged_members | string          |Specifies the list of port members to be untagged to the corresponding VLAN. |
+| name             | string                        |Configures name of the VLAN.                    |
+| description      | string          |Configures one line description for the VLAN. This key is not applicable in dellos6 devices. |
+| tagged_members   | list         |Specifies the list of port members to be tagged to the corresponding VLAN. See the tagged_members.* for each list item|
+| tagged_members.port | string |Specify valid dellos9/dellos6/dellos10 interface name to be tagged for vlan. |
+| tagged_members.state | string, choices: absent,present |Removes the tagged association for vlan if set to absent. |
+| untagged_members | list         |Specifies the list of port members to be untagged to the corresponding VLAN. See the untagged_members.* for each list item|
+| untagged_members.port | string |Specify valid dellos9/dellos6/dellos10 interface name to be untagged for vlan. |
+| untagged_members.state | string, choices: absent,present |Removes the untagged association for vlan if set to absent. |
 | state           | string, choices: absent, present*          |Deletes the VLAN corresponding to the ID when set to absent.  |
-| members_state   | string, choices: absent, present*           |Deletes the members of the VLAN when set to absent.  |
                                                                                                       
 
 ```
@@ -71,13 +77,13 @@ Note: Asterisk (*) denotes the default value if none is specified.
 Dependencies
 ------------
 
-The dellos-vlan role is built on modules included in the core Ansible code.
+The Dell-Networking.dellos-vlan role is built on modules included in the core Ansible code.
 These modules were added in Ansible version 2.2.0.
 
 Example Playbook
 ----------------
-The following example uses the dellos-vlan role to setup the VLAN ID and name. This example also configures tagged and untagged port members for the VLAN. You can also delete the VLAN with the ID or delete the members associated to it. This example also creates a ``hosts`` file with the switch, a corresponding ``host_vars`` file, and
-then a simple playbook that references the dellos-vlan role.
+The following example uses the dellos-vlan role to setup the VLAN ID and name. This example also configures tagged and untagged port members for the VLAN. You can also delete the VLAN with the ID or delete the members associated to it. This example also creates a ``hosts`` file with the switch details, corresponding ``host_vars`` file, and
+then a simple playbook that references the Dell-Networking.dellos-vlan role.
 
 Sample hosts file:
 
@@ -91,20 +97,20 @@ Sample ``host_vars/leaf1``:
       username: xxxxx
       password: xxxxx
       authorize: yes
-	  auth_pass: xxxxx 
+      auth_pass: xxxxx 
       transport: cli
 
-Sample ``vars/main.yaml``:
-
     dellos_vlan:
-      leaf1:
+        default_vlan: true
         vlan 100:
           name: "Mgmt Network"
+          description: "Int-vlan"
           tagged_members:
-            - fortyGigE 1/30,1/32
+            - port: fortyGigE 1/30
+              state: absent
           untagged_members:
-            - fortyGigE 1/14
-          members_state: present
+            - port: fortyGigE 1/14
+              state: present
           state: present
 
 
@@ -116,16 +122,12 @@ Simple playbook to setup system, ``leaf.yaml``:
                 
 Then run with:
 
-    ansible-playbook -i hosts leaf.yml
-
-Contact
---------
-Send general comments and feedback to: feedback-ansible-dell-networking@dell.com
+    ansible-playbook -i hosts leaf.yaml
 
 License
 --------
 
-Copyright (c) 2017, Dell Inc. All rights reserved.
+Copyright (c) 2016, Dell Inc. All rights reserved.
  
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

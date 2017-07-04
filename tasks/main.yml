@@ -1,5 +1,5 @@
 ---
- - name: "Provision Vlan configuration for OS9"
+ - name: "Provisioning VLAN configuration for dellos9"
    dellos9_config:
      src: dellos9_vlan.j2
      provider: "{{ cli }}"
@@ -7,7 +7,7 @@
    when: ansible_net_os_name == "dellos9"
    register: output
   
- - name: "Provision VLAN configuration for OS6"
+ - name: "Provisioning VLAN configuration for dellos6"
    dellos6_config:
      src: dellos6_vlan.j2
      provider: "{{ cli }}"
@@ -15,7 +15,7 @@
    when: ansible_net_os_name == "dellos6"
    register: output
 
- - name: "Provision VLAN configuration for OS10"
+ - name: "Provisioning VLAN configuration for dellos10"
    dellos10_config:
      src: dellos10_vlan.j2
      provider: "{{ cli }}"
