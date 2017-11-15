@@ -38,6 +38,7 @@ dellos_vlan:
 
 # Sample variables for dellos10 device
 dellos_vlan:
+    default_vlan_id: 2
     vlan 100:
       description: "Blue"
       tagged_members:

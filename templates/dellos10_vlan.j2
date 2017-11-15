@@ -5,6 +5,8 @@ Purpose:
 Configure VLAN Interface commands for dellos10 Devices
 
 dellos_vlan:
+  default_vlan_id : 4
+  VLAN 100:
       description: "red"
       tagged_members:
         - port: ethernet 1/1/32
@@ -20,7 +22,15 @@ dellos_vlan:
 
 #########################################}
 {% if dellos_vlan is defined and dellos_vlan %}
-{% for key in dellos_vlan.keys() %}
+{% for key,value in dellos_vlan.iteritems() %}
+  {% if key == "default_vlan_id" %}
+    {% if value %}
+default vlan-id {{ value }}
+    {% else %}
+no default vlan-id
+    {% endif %}
+  {% else %}
+
   {% set vlan_id = key.split(" ") %}
   {% set vlan_vars = dellos_vlan[key] %}
 
@@ -63,6 +73,7 @@ interface {{ ports.port }}
    {% endif %}
 
 
+  {% endif %}
   {% endif %}
 {% endfor %}
 {% endif %}
