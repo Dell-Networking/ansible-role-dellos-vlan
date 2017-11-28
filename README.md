@@ -17,16 +17,21 @@ Role variables
 - If *dellos_cfg_generate* is set to true, the variable generates the role configuration commands in a file
 - Any role variable with a corresponding state variable set to absent negates the configuration of that variable
 - For variables with no state variable, setting an empty value for the variable negates the corresponding configuration
-- *dellos_vlan* (dictionary) holds the key with the VLAN ID key
+- *dellos_vlan* (dictionary) holds the key with the VLAN ID key and default-vlan key.
 - VLAN ID key should be in format "vlan <ID>" (1 to 4094)
 - Variables and values are case-sensitive
+
+**dellos_vlan**
+
+| Key        | Type                      | Notes                                                   | Support               |
+|------------|---------------------------|---------------------------------------------------------|-----------------------|
+| ``default_vlan`` | boolean                 | Configures default vlan feature as diabled if set to true | dellos9 |
+| ``default_vlan_id`` | integer | Configures a vlan-id as default vlan for an existing vlan on OS10 devices. | dellos10 |
 
 **VLAN ID keys**
 
 | Key        | Type                      | Notes                                                   | Support               |
 |------------|---------------------------|---------------------------------------------------------|-----------------------|
-| ``default_vlan`` | boolean                 | Configures default vlan as diabled if set to true | dellos9 |
-| ``default_vlan_id`` | integer | Configures a vlan-id as default vlan for an existing vlan on OS10 devices. | dellos10 |
 | ``name``             | string                        | Configures name of the VLAN                    | dellos6, dellos9 |
 | ``description``      | string          | Configures a single line description for the VLAN | dellos9, dellos10 |
 | ``tagged_members``   | list         | Specifies the list of port members to be tagged to the corresponding VLAN (see the ``tagged_members.*``) | dellos6, dellos9, dellos10 |
