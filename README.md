@@ -60,7 +60,6 @@ Ansible Dell EMC Networking roles require connection information to establish co
 | ``ansible_become_pass`` | no       |            | Specifies the password to use if required to enter privileged mode on the remote device; if ``ansible_become`` is set to no this key is not applicable. |
 | ``ansible_network_os`` | yes      | dellos6/dellos9/dellos10, null\*  | This value is used to load the correct terminal and cliconf plugins to communicate with the remote device. |
 
-
 > **NOTE**: Asterisk (\*) denotes the default value if none is specified.
 
 Dependencies
