@@ -1,5 +1,5 @@
 ---
 - hosts: datacenter
-  remote_user: local
+  connection: network_cli
   roles:
     - Dell-Networking.dellos-vlan
