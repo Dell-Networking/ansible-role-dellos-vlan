@@ -54,11 +54,11 @@ Ansible Dell EMC Networking roles require connection information to establish co
 | ``ansible_host`` | yes      |            | Specifies the hostname or address for connecting to the remote device over the specified transport |
 | ``ansible_port`` | no       |            | Specifies the port used to build the connection to the remote device; if value is unspecified, the ANSIBLE_REMOTE_PORT option is used; it defaults to 22 |
 | ``ansible_ssh_user`` | no       |            | Specifies the username that authenticates the CLI login for the connection to the remote device; if value is unspecified, the ANSIBLE_REMOTE_USER environment variable value is used  |
-| ``ansible_ssh_pass`` | no       |            | Specifies the password that authenticates the connection to the remote device.  |
+| ``ansible_ssh_pass`` | no       |            | Specifies the password that authenticates the connection to the remote device |
 | ``ansible_become`` | no       | yes, no\*   | Instructs the module to enter privileged mode on the remote device before sending any commands; if value is unspecified, the ANSIBLE_BECOME environment variable value is used, and the device attempts to execute all commands in non-privileged mode |
-| ``ansible_become_method`` | no       | enable, sudo\*   | Instructs the module to allow the become method to be specified for handling privilege escalation; if value is unspecified, the ANSIBLE_BECOME_METHOD environment variable value is used. |
-| ``ansible_become_pass`` | no       |            | Specifies the password to use if required to enter privileged mode on the remote device; if ``ansible_become`` is set to no this key is not applicable. |
-| ``ansible_network_os`` | yes      | dellos6/dellos9/dellos10, null\*  | This value is used to load the correct terminal and cliconf plugins to communicate with the remote device. |
+| ``ansible_become_method`` | no       | enable, sudo\*   | Instructs the module to allow the become method to be specified for handling privilege escalation; if value is unspecified, the ANSIBLE_BECOME_METHOD environment variable value is used |
+| ``ansible_become_pass`` | no       |            | Specifies the password to use if required to enter privileged mode on the remote device; if ``ansible_become`` is set to no this key is not applicable |
+| ``ansible_network_os`` | yes      | dellos6/dellos9/dellos10, null\*  | Loads the correct terminal and cliconf plugins to communicate with the remote device |
 
 > **NOTE**: Asterisk (\*) denotes the default value if none is specified.
 
@@ -112,4 +112,4 @@ When *dellos_cfg_generate* is set to true, the variable generates the configurat
 
     ansible-playbook -i hosts leaf.yaml
 
-(c) 2017 Dell EMC
+(c) 2017 Dell Inc. or its subsidiaries. All Rights Reserved.
