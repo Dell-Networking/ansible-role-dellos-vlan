@@ -56,10 +56,10 @@ exit
         {% if ports.port is defined and ports.port %}
           {% if ports.state is defined and ports.state=="absent" %}
 interface {{ ports.port }}
-no switchport trunk allowed vlan
+switchport trunk allowed vlan remove {{ vlan_id[1] }}
           {% else %}
 interface {{ ports.port }}
-switchport trunk allowed vlan {{ vlan_id[1] }}
+switchport trunk allowed vlan add {{ vlan_id[1] }}
           {% endif %}
         {% endif %}
 exit
