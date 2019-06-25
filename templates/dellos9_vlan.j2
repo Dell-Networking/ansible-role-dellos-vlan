@@ -22,7 +22,7 @@ dellos_vlan:
         state: present
 #########################################}
 {% if dellos_vlan is defined and dellos_vlan %}
-{% for key,value in dellos_vlan.iteritems() %}
+{% for key,value in dellos_vlan.items() %}
   {% if key == "default_vlan" %}
     {% if value %}
 default-vlan disable
