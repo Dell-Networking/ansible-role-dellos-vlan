@@ -8,7 +8,6 @@ dellos_vlan:
   default_vlan_id : 4
   VLAN 100:
       description: "red"
-      virtual_network: 100
       tagged_members:
         - port: ethernet 1/1/32
           state: present
@@ -44,13 +43,6 @@ interface vlan{{ vlan_id[1] }}
  description {{ vlan_vars.description }}
       {% else %}
  no description
-      {% endif %}
-    {% endif %}
-    {% if vlan_vars.virtual_network is defined %}
-      {% if vlan_vars.virtual_network %}
- virtual-network {{ vlan_vars.virtual_network }}
-      {% else %}
- no virtual-network
       {% endif %}
     {% endif %}
     {% if vlan_vars.untagged_members is defined %}

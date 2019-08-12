@@ -34,7 +34,6 @@ Role variables
 |------------|---------------------------|---------------------------------------------------------|-----------------------|
 | ``name``             | string                        | Configures the name of the VLAN                    | dellos6, dellos9 |
 | ``description``      | string          | Configures a single line description for the VLAN | dellos9, dellos10 |
-| ``virtual_network``  | integer      | Specifies the virtual network to be associated to the corresponding VLAN | dellos10 |
 | ``tagged_members``   | list         | Specifies the list of port members to be tagged to the corresponding VLAN (see ``tagged_members.*``) | dellos6, dellos9, dellos10 |
 | ``tagged_members.port`` | string | Specifies valid device interface names to be tagged for each VLAN | dellos6, dellos9, dellos10 |
 | ``tagged_members.state`` | string: absent,present | Deletes the tagged association for the VLAN if set to absent | dellos6, dellos9, dellos10 |
