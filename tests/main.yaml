@@ -52,6 +52,14 @@ dellos_vlan:
           - port: ethernet 1/1/29
             state: present
       state: present
+    vlan 888:
+      description: "NSX_Cluster"
+      virtual_network: 888
+      untagged_members:
+        - port: port-channel 1
+          state: "present"
+      state: "present"
+
 
 
 
