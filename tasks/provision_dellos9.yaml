@@ -1,10 +1,9 @@
 ---
 # tasks file for dellos9
-
  - name: "Generating VLAN configuration for dellos9"
    template:
       src: dellos9_vlan.j2
-      dest: "{{ build_dir }}/vlan9_{{hostname}}.conf.part"
+      dest: "{{ build_dir }}/vlan9_{{ hostname }}.conf.part"
    when: (ansible_network_os is defined and ansible_network_os == "dellos9") and ((dellos_cfg_generate | default('False')) | bool)
 #   notify: save config os9
    register: generate_output

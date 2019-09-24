@@ -1,6 +1,5 @@
 ---
 # vars file for Dell-Networking.dellos-vlan, below gives a example configuration
-
 # Sample variables for dellos9 device
 dellos_vlan:
     default_vlan: true
@@ -18,7 +17,6 @@ dellos_vlan:
           - port: fortyGigE 1/10
             state: present
       state: present
-
 
 # Sample variables for dellos6 device   
 dellos_vlan:
@@ -58,9 +56,3 @@ dellos_vlan:
         - port: port-channel 1
           state: "present"
       state: "present"
-
-
-
-
-
-
