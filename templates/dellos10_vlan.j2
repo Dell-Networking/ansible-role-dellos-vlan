@@ -1,9 +1,7 @@
 #jinja2: trim_blocks: True,lstrip_blocks: True
 {##########################################
-
 Purpose:
 Configure VLAN Interface commands for dellos10 Devices
-
 dellos_vlan:
   default_vlan_id : 4
   VLAN 100:
@@ -19,7 +17,6 @@ dellos_vlan:
         - port: ethernet 1/1/29
           state: present
       state: present
-
 #########################################}
 {% if dellos_vlan is defined and dellos_vlan %}
 {% for key,value in dellos_vlan.items() %}

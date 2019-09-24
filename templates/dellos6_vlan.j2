@@ -1,6 +1,5 @@
 #jinja2: trim_blocks: True,lstrip_blocks: True
 {#########################################
-
 Purpose:
 Configure VLAN Interface commands for dellos6 Devices
 
@@ -18,7 +17,6 @@ dellos_vlan:
         - port: Te1/0/4
           state: absent
       state: present
-
 #########################################}
 {% if dellos_vlan is defined and dellos_vlan %}
 {% for key  in dellos_vlan.keys() %}
