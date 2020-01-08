@@ -65,6 +65,9 @@ interface {{ ports.port }}
  switchport mode trunk
  switchport trunk allowed vlan {{ vlan_id[1] }}
           {% endif %}
+          {% if ports.access_vlan is defined and ports.access_vlan == "false" %}
+ no switchport access vlan
+          {% endif %}
         {% endif %}
      {% endfor %}
    {% endif %}
