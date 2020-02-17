@@ -37,7 +37,7 @@ no interface vlan{{ vlan_id[1] }}
 interface vlan{{ vlan_id[1] }}
     {% if vlan_vars.description is defined %}
       {% if vlan_vars.description %}
- description {{ vlan_vars.description }}
+ description "{{ vlan_vars.description }}"
       {% else %}
  no description
       {% endif %}
