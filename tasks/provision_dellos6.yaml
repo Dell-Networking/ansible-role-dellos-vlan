@@ -7,6 +7,7 @@
    when: (ansible_network_os is defined and ansible_network_os == "dellos6") and ((dellos_cfg_generate | default('False')) | bool)
 #   notify: save config os6
    register: generate_output
+   check_mode: no
 
  - name: "Provisioning VLAN configuration for dellos6"
    dellos6_config:
